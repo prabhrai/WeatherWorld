@@ -7,13 +7,14 @@
 //
 
 import UIKit
-
 import CoreLocation
+
+
 
 
 class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
 	
-    var locationManager: CLLocationManager()
+    var locationManager = CLLocationManager()
     
     @IBOutlet weak var city: UITextField!
     @IBOutlet weak var state: UITextField!
@@ -21,24 +22,28 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
     
     @IBAction func getUserLocation(_ sender: Any) {
         
-        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+         print ("Location is : ")
     }
     
     @IBAction func getWeather(_ sender: Any) {
+        locationManager.stopUpdatingLocation()
+
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        
        // locationManager.delegate = self
        // locationManager.requestAlwaysAuthorization()
         
-         view.backgroundColor = UIColor.gray
+         //view.backgroundColor = UIColor.gray
 
         // Do any additional setup after loading the view.
     }
@@ -49,24 +54,17 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
     }
     
     
+    
+
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
-    
-        
-        print ("Location is : \(location)" );
-        
+        print ("Location is : \(location.altitude)" )
+        print ("Location is : \(location.coordinate)" )
+      
     }
     
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    // do stuff
-                }
-            }
-        }
-    }
+
 
     /*
     // MARK: - Navigation

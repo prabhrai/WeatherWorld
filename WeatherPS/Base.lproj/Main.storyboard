@@ -53,7 +53,7 @@
                                         </constraints>
                                         <state key="normal" title="Get My Location"/>
                                         <connections>
-                                            <action selector="getUserLocation:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="eK2-hZ-AmM"/>
+                                            <action selector="getUserLocation:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="8Y9-K8-KOb"/>
                                         </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7YL-Js-3L2">
@@ -74,7 +74,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Get Weather"/>
                                                 <connections>
-                                                    <action selector="getWeather:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="7d0-96-eFA"/>
+                                                    <action selector="getWeather:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="aLf-Af-G59"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -92,16 +92,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oHN-As-EQy"/>
-                    <connections>
-                        <outlet property="city" destination="zAM-5q-jg7" id="mQJ-lR-0As"/>
-                        <outlet property="getWeather" destination="Src-sa-plM" id="n6p-oF-KRJ"/>
-                        <outlet property="scale" destination="7YL-Js-3L2" id="IXH-DB-bOt"/>
-                        <outlet property="state" destination="1Qu-Wr-UAI" id="4Eb-ER-T6H"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4w3-YJ-uDr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301.60000000000002" y="-451.12443778110946"/>
+            <point key="canvasLocation" x="318" y="-586"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HXY-ez-3Fv">
@@ -197,9 +191,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMl-4J-0CX">
                                 <rect key="frame" x="16" y="629" width="173" height="30"/>
                                 <state key="normal" title="Return to Main Menu"/>
-                                <connections>
-                                    <segue destination="cOJ-1K-Jcn" kind="show" id="14o-FD-qya"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e7P-M1-qzX">
                                 <rect key="frame" x="16" y="124" width="343" height="506"/>
@@ -253,9 +244,6 @@
                                     <constraint firstAttribute="height" constant="38" id="DrR-dR-FLk"/>
                                 </constraints>
                                 <state key="normal" title="Return to Main Menu"/>
-                                <connections>
-                                    <segue destination="cOJ-1K-Jcn" kind="show" id="4XE-0W-eHg"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30z-ny-jcF">
                                 <rect key="frame" x="16" y="591" width="343" height="30"/>
@@ -438,6 +426,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ATG-Yb-80m"/>
-        <segue reference="4XE-0W-eHg"/>
     </inferredMetricsTieBreakers>
 </document>
