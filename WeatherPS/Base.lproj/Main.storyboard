@@ -23,76 +23,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qHn-bS-7Fa">
-                                <rect key="frame" x="112" y="104" width="150" height="228"/>
+                                <rect key="frame" x="112.5" y="293" width="150" height="80"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zAM-5q-jg7">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZIP Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Qu-Wr-UAI">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="QF2-3d-qIi"/>
-                                        </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Qu-Wr-UAI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Src-sa-plM">
                                         <rect key="frame" x="0.0" y="50" width="150" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="sA3-so-U4z"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7YL-Js-3L2">
-                                        <rect key="frame" x="0.0" y="100" width="150" height="29"/>
-                                        <segments>
-                                            <segment title="Celcius"/>
-                                            <segment title="Fahreheit"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQ9-pz-tur">
-                                        <rect key="frame" x="0.0" y="148" width="150" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="sEC-6e-oe3"/>
+                                            <constraint firstAttribute="width" constant="150" id="PLb-wE-1mv"/>
                                         </constraints>
-                                        <state key="normal" title="Get My Location"/>
+                                        <state key="normal" title="Get Weather"/>
                                         <connections>
-                                            <action selector="getUserLocation:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="8Y9-K8-KOb"/>
+                                            <action selector="getWeather:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="aLf-Af-G59"/>
+                                            <segue destination="2L6-WB-DZx" kind="show" id="MAo-Jp-f7Y"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="lyg-B8-DLe">
-                                        <rect key="frame" x="0.0" y="198" width="150" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Src-sa-plM">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="h77-6y-nhj"/>
-                                                </constraints>
-                                                <state key="normal" title="Get Weather"/>
-                                                <connections>
-                                                    <action selector="getWeather:" destination="cOJ-1K-Jcn" eventType="touchUpInside" id="aLf-Af-G59"/>
-                                                    <segue destination="2L6-WB-DZx" kind="show" id="MAo-Jp-f7Y"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="lyg-B8-DLe" firstAttribute="centerX" secondItem="qHn-bS-7Fa" secondAttribute="centerX" id="Eha-LG-fDF"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.71443670988082886" green="0.93833738565444946" blue="0.84307068586349487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qHn-bS-7Fa" firstAttribute="centerX" secondItem="iNP-jv-RHW" secondAttribute="centerX" id="PR9-m7-hce"/>
-                            <constraint firstItem="qHn-bS-7Fa" firstAttribute="top" secondItem="9wO-Px-HdU" secondAttribute="bottom" constant="84" id="xP8-45-WL7"/>
+                            <constraint firstItem="qHn-bS-7Fa" firstAttribute="centerX" secondItem="iNP-jv-RHW" secondAttribute="centerX" id="V9W-xO-Fyf"/>
+                            <constraint firstItem="qHn-bS-7Fa" firstAttribute="centerY" secondItem="iNP-jv-RHW" secondAttribute="centerY" id="nod-O4-JcP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oHN-As-EQy"/>
+                    <connections>
+                        <outlet property="ZIP" destination="1Qu-Wr-UAI" id="fbB-AB-VNV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4w3-YJ-uDr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

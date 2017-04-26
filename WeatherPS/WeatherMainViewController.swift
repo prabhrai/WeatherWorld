@@ -12,41 +12,27 @@ import CoreLocation
 
 class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
 	
+    @IBOutlet weak var ZIP: UITextField!
+    
+    
     var locationManager = CLLocationManager()
     
     var lat : Double?
     var long : Double?
     
-    
-    // @IBOutlet weak var city: UITextField!
-    // @IBOutlet weak var state: UITextField!
-    // @IBOutlet weak var scale: UISegmentedControl!
-    
-    @IBAction func getUserLocation(_ sender: Any) {
-        
-      print ("Location longitude is " )
-
-    }
-    
-    @IBAction func getWeather(_ sender: Any) {
-        locationManager.stopUpdatingLocation()
+    @IBAction func getWeather(_ sender: UIButton ) {
+      //   locationManager.stopUpdatingLocation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+       
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        
-       // locationManager.delegate = self
-       // locationManager.requestAlwaysAuthorization()
-        
-         //view.backgroundColor = UIColor.gray
+        locationManager.requestLocation()
+        // locationManager.startUpdatingLocation()
+
 
         // Do any additional setup after loading the view.
     }
@@ -67,7 +53,12 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
         print ("Location latitude is : \(location.coordinate.longitude.rounded())" )
       
     }
-
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+         print ("Error encountered)" )
+    }
+    
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -80,7 +71,9 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
         if let destination = destination as? WeatherFullViewController {
             destination.latitude = lat
             destination.longitude = long
+            destination.ZIP = ZIP.text
         }
+        
         
         
     }

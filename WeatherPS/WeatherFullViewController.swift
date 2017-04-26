@@ -15,21 +15,15 @@ class WeatherFullViewController: UIViewController {
     
     var latitude : Double?
     var longitude : Double?
-    
+    var ZIP : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let center = CLLocationCoordinate2DMake(latitude!, longitude!)
         let span = MKCoordinateSpanMake(0.3, 0.3)
         let region = MKCoordinateRegion(center: center, span: span)
-        
         self.map.setRegion(region, animated: true)
-        
-        
-        
-
         // Do any additional setup after loading the view.
     }
 
