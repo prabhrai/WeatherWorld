@@ -12,7 +12,14 @@ import CoreLocation
 
 class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
 
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var conditionIcon: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var conditionsLabel: UILabel!
+    
+    
     @IBOutlet weak var map : MKMapView!
+    var weatherCollection = Array<MyWeather>()
     
     var locationManager = CLLocationManager()
     
@@ -39,19 +46,10 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         if let url = URL(string : urlString){
             if let data = try? Data(contentsOf: url){
                 let parsedJSON = JSON.init(data: data)
-        
                 let WPData = parsedJSON["hourly_forecast"]
-                
+                 var counter = 0
   
-                for (key, jsonValue): (String,JSON) in WPData {
-                     print("\n\n\n\n  ")
-                    
-//                    let WPTime = WPData["FCTTIME"]
-//                    for (key1, jsonValue1): (String,JSON) in WPTime {
-//                        print (" Key : \(key1) ++++++++ jsonValue : \(jsonValue1)" )
-//                    }
-                    
-                     print("\n\n\n\n ")
+                for (_, jsonValue): (String,JSON) in WPData {
                     let condition = jsonValue["condition"]
                     let icon_url = jsonValue["icon_url"]
                     let humidity = jsonValue["humidity"]
@@ -66,43 +64,41 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
                         JSON.null ==  time ||  JSON.null ==  time_worded ||  JSON.null ==  temp_e ||  JSON.null ==  temp_f || iconURL == nil ) {
                         continue
                     }
-                    
-                    
-                    
-                    print (" Key : \(key) ---- jsonValue : \(jsonValue)" )
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-//                    print("\n\n\n\n ")
-//
-//                    print (" condition :   \t     \(condition)       ")
-//                    print (" icon_url :    \t     \(icon_url)       ")
-//                    print (" humidity :   \t      \(humidity)       ")
-//                    print (" time_worded :  \t    \(time_worded)       ")
-//                    print (" time :     \t        \(time)       ")
-//                    print (" temp_e :   \t        \(temp_e)       ")
-//                    print (" temp_f :   \t        \(temp_f)       ")
-//                    print("\n\n\n\n ")
-
+                
+                    let currentWeatherObj = MyWeather(time: time.stringValue,
+                                                      time_worded: time_worded.stringValue,
+                                                      condition : condition.stringValue,
+                                                      temp_e: temp_e.stringValue,
+                                                      temp_f: temp_f.stringValue,
+                                                      icon_url: iconURL!)
+                    weatherCollection.append(currentWeatherObj)
+                    counter+=1
                 }
+                print("counter is \(counter)")
                 
-                
-                
-                
-           // print("\n\n\n\n\n\n\n\n\n\n\n\n ")
-                
-           // print(parsedJSON)
-                
-            print("\n---------------------\n ")
             }
  
             
         }
+        
+      //  conditionIcon.image(data : NSData(contentsOf: weatherCollection[0].icon_url))
+        
+        //conditionIcon=UIImage(data: NSData(contentsOfURL: NSURL(string: weatherCollection[0].icon_url.absoluteString)!)!
+        let url = weatherCollection[0].icon_url
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async() {
+                self.conditionIcon.image = UIImage(data: data)
+            }
+        }
+        
+        task.resume()
+        tempLabel.text = "It is \(weatherCollection[0].temp_e)  °F"
+        timeLabel.text = "It is \(weatherCollection[0].time)"
+        conditionsLabel.text = "It is \(weatherCollection[0].condition) "
+
         
         // Do any additional setup after loading the view.
     }
