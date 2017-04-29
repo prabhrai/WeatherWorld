@@ -7,18 +7,13 @@
 //
 
 import UIKit
-import CoreLocation
 
 
-class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
+
+class WeatherMainViewController: UIViewController  {
 	
     @IBOutlet weak var ZIP: UITextField!
-    
-    
-    var locationManager = CLLocationManager()
-    
-    var lat : Double?
-    var long : Double?
+  
     
     @IBAction func getWeather(_ sender: UIButton ) {
       //   locationManager.stopUpdatingLocation()
@@ -26,14 +21,7 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         // locationManager.startUpdatingLocation()
-
-
         // Do any additional setup after loading the view.
     }
 
@@ -42,22 +30,6 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-         lat = location.coordinate.latitude.rounded()
-         long = location.coordinate.longitude.rounded()
-
-        print ("Location longitude is : \(location.coordinate.latitude.rounded())" )
-        print ("Location latitude is : \(location.coordinate.longitude.rounded())" )
-      
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-         print ("Error encountered)" )
-    }
     
     
     // MARK: - Navigation
@@ -69,13 +41,12 @@ class WeatherMainViewController: UIViewController , CLLocationManagerDelegate{
         let destination = segue.destination
         
         if let destination = destination as? WeatherFullViewController {
-            destination.latitude = lat
-            destination.longitude = long
-            destination.ZIP = ZIP.text
+      //      destination.myLocation = myLocation
+      //       destination.latitude = lat
+      //      destination.longitude = long
+           destination.ZIP = ZIP.text
         }
-        
-        
-        
+
     }
     
 
