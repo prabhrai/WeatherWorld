@@ -233,12 +233,12 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="oXG-7F-cIN"/>
                                 </constraints>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="g42-X3-KmL">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g42-X3-KmL">
                                 <rect key="frame" x="26" y="50" width="327" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9we-AW-NAv">
-                                        <rect key="frame" x="0.0" y="0.0" width="227" height="80"/>
-                                        <color key="backgroundColor" red="0.71443670988082886" green="0.93833738565444946" blue="0.84307068586349487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="158.5" height="80"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="66m-iB-htV"/>
                                         </constraints>
@@ -247,7 +247,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vnn-4k-Dgj">
-                                        <rect key="frame" x="267" y="0.0" width="60" height="80"/>
+                                        <rect key="frame" x="168.5" y="0.0" width="158.5" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="kec-V5-rPh"/>
                                         </constraints>
@@ -259,7 +259,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-hY-cER">
                                         <rect key="frame" x="0.0" y="0.0" width="133.5" height="75"/>
-                                        <color key="backgroundColor" red="0.71443670988082886" green="0.93833738565444946" blue="0.84307068586349487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="XvH-Au-HSr"/>
                                         </constraints>
@@ -269,7 +269,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA7-y3-6aZ">
                                         <rect key="frame" x="193.5" y="0.0" width="133.5" height="75"/>
-                                        <color key="backgroundColor" red="0.71443670988082886" green="0.93833738565444946" blue="0.84307068586349487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -314,6 +314,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7La-sx-Bn2"/>
-        <segue reference="MAo-Jp-f7Y"/>
+        <segue reference="PSh-Wx-Gag"/>
     </inferredMetricsTieBreakers>
 </document>
