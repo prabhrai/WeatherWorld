@@ -54,14 +54,14 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
                     let icon_url = jsonValue["icon_url"]
                     let humidity = jsonValue["humidity"]
                     let time = jsonValue["FCTTIME"]["civil"]
-                    let time_worded = jsonValue["FCTTIME"]["weekday_name_night"]
+                    let time_worded = jsonValue["FCTTIME"]["weekday_name_abbrev"]
                     let temp_e = jsonValue["temp"]["english"]
-                    let temp_f = jsonValue["temp"]["metric"]
+                    let temp_m = jsonValue["temp"]["metric"]
                     let iconURL = URL(string: icon_url.string!)
                     
                     
                     if ( JSON.null ==  condition || JSON.null ==  icon_url ||  JSON.null ==  humidity ||
-                        JSON.null ==  time ||  JSON.null ==  time_worded ||  JSON.null ==  temp_e ||  JSON.null ==  temp_f || iconURL == nil ) {
+                        JSON.null ==  time ||  JSON.null ==  time_worded ||  JSON.null ==  temp_e ||  JSON.null ==  temp_m || iconURL == nil ) {
                         continue
                     }
                 
@@ -69,7 +69,7 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
                                                       time_worded: time_worded.stringValue,
                                                       condition : condition.stringValue,
                                                       temp_e: temp_e.stringValue,
-                                                      temp_f: temp_f.stringValue,
+                                                      temp_m: temp_m.stringValue,
                                                       icon_url: iconURL!)
                     weatherCollection.append(currentWeatherObj)
                     counter+=1
@@ -95,9 +95,9 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         }
         
         task.resume()
-        tempLabel.text = "It is \(weatherCollection[0].temp_e)  °F"
-        timeLabel.text = "It is \(weatherCollection[0].time)"
-        conditionsLabel.text = "It is \(weatherCollection[0].condition) "
+        tempLabel.text = " \(weatherCollection[0].temp_e) °F / \(weatherCollection[0].temp_m) °C "
+        timeLabel.text = "  Time - \(weatherCollection[0].time)"
+        conditionsLabel.text = " Conditions - \(weatherCollection[0].condition) "
 
         
         // Do any additional setup after loading the view.
@@ -158,14 +158,27 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destination = segue.destination
+        
+        if let destination = destination as? WeatherDetailTVController {
+            
+            destination.myWeather = weatherCollection
+            
+        }
+        
+        
+        
+        
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

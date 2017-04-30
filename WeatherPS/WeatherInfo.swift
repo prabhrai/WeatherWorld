@@ -38,20 +38,32 @@ class MyWeather {
     let time_worded : String
     let condition : String
     let temp_e : String
-    let temp_f : String
+    let temp_m : String
     let icon_url : URL
 
+    
+    
+//    init( ){
+//        self.time = ""
+//        self.time_worded = ""
+//        self.condition = ""
+//        self.temp_e = ""
+//        self.temp_m = ""
+//        self.icon_url = ""
+//    }//
+    
+    
     init(   time : String,
             time_worded : String,
             condition : String,
             temp_e : String,
-            temp_f : String,
+            temp_m : String,
             icon_url : URL ){
          self.time = time
          self.time_worded = time_worded
          self.condition = condition
          self.temp_e = temp_e
-         self.temp_f = temp_f
+         self.temp_m = temp_m
          self.icon_url = icon_url
 
     }
