@@ -49,7 +49,7 @@ class WeatherDetailTVController: UITableViewController{
         if let myCell = cell as? WeatherDetailTVCell {
             myCell.time.text = myWeather?[index].time
             myCell.conditions.text = myWeather?[index].condition
-            myCell.temp.text = myWeather?[index].temp_e
+            myCell.temp.text = "\((myWeather?[index].temp_e)!) °F"
             myCell.date.text = myWeather?[index].time_worded
            // myCell.icon.image =
             

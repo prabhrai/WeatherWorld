@@ -23,8 +23,8 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
     
     var locationManager = CLLocationManager()
     
-    var myLocation : UserLocation?
-    var myQueryURL : URL?
+    //var myLocation = UserLocation(lat: 0,long: 0)
+    var queryString : String?
     
     let urlString = "https://api.wunderground.com/api/affbb21f7da824a5/hourly/q/37.857657,-122.295500.json"
     
@@ -40,15 +40,31 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
 
-         print("I'm here in VDL")
+        
+        print("I'm here in VDL 1")
 
+       // print(queryString!)
+        
+        print("Query url created ")
+        
+        
+      //  conditionIcon.image(data : NSData(contentsOf: weatherCollection[0].icon_url))
+        
+        //conditionIcon=UIImage(data: NSData(contentsOfURL: NSURL(string: weatherCollection[0].icon_url.absoluteString)!)!
+       
+  
+        
+        // Do any additional setup after loading the view.
+    }
 
-        if let url = URL(string : urlString){
+    private func parseJSON (queryString : String)  {
+    
+        if let url = URL(string : queryString){
             if let data = try? Data(contentsOf: url){
                 let parsedJSON = JSON.init(data: data)
                 let WPData = parsedJSON["hourly_forecast"]
-                 var counter = 0
-  
+                var counter = 0
+                
                 for (_, jsonValue): (String,JSON) in WPData {
                     let condition = jsonValue["condition"]
                     let icon_url = jsonValue["icon_url"]
@@ -64,7 +80,7 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
                         JSON.null ==  time ||  JSON.null ==  time_worded ||  JSON.null ==  temp_e ||  JSON.null ==  temp_m || iconURL == nil ) {
                         continue
                     }
-                
+                    
                     let currentWeatherObj = MyWeather(time: time.stringValue,
                                                       time_worded: time_worded.stringValue,
                                                       condition : condition.stringValue,
@@ -77,30 +93,24 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
                 print("counter is \(counter)")
                 
             }
- 
             
-        }
-        
-      //  conditionIcon.image(data : NSData(contentsOf: weatherCollection[0].icon_url))
-        
-        //conditionIcon=UIImage(data: NSData(contentsOfURL: NSURL(string: weatherCollection[0].icon_url.absoluteString)!)!
-        let url = weatherCollection[0].icon_url
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else { return }
+            let url = weatherCollection[0].icon_url
             
-            DispatchQueue.main.async() {
-                self.conditionIcon.image = UIImage(data: data)
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                DispatchQueue.main.async() {
+                    self.conditionIcon.image = UIImage(data: data)
+                }
             }
+            
+            task.resume()
+            
         }
-        
-        task.resume()
-        tempLabel.text = " \(weatherCollection[0].temp_e) °F / \(weatherCollection[0].temp_m) °C "
-        timeLabel.text = "  Time - \(weatherCollection[0].time)"
-        conditionsLabel.text = " Conditions - \(weatherCollection[0].condition) "
 
-        
-        // Do any additional setup after loading the view.
+        tempLabel.text = " \(weatherCollection[0].temp_e) °F / \(weatherCollection[0].temp_m) °C "
+        timeLabel.text = "\(weatherCollection[0].time)"
+        conditionsLabel.text = "\(weatherCollection[0].condition) "
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,17 +125,26 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         let latt =  location.coordinate.latitude.rounded()
         let longg = location.coordinate.longitude.rounded()
         
-        myLocation = UserLocation(lat: latt, long: longg)
+        let myLocation = UserLocation(lat: latt, long: longg)
+        
+        let baseURL = "http://api.wunderground.com/api/"
+        let api_key = WeatherInfo.WeatherAPIKey.API_Key
+        let type = "/hourly/q/"
+        let lat =  String (describing: myLocation.lat)
+        let long =  String (describing: myLocation.long)
+        let format = ".json"
+        queryString = baseURL.appending(api_key).appending(type).appending(lat).appending(",").appending(long).appending(format)
+        
+        print(queryString!)
         print("I'm here in LM")
         print ("Location longitude is : \(location.coordinate.latitude.rounded())" )
         print ("Location latitude is : \(location.coordinate.longitude.rounded())" )
-        
-        myQueryURL = createURL()
-        
-        let center = CLLocationCoordinate2DMake((myLocation?.lat)! , (myLocation?.long)!)
+   
+        let center = CLLocationCoordinate2DMake(latt,longg)
         let span = MKCoordinateSpanMake(0.99, 0.99)
         let region = MKCoordinateRegion(center: center, span: span)
         self.map.setRegion(region, animated: true)
+        parseJSON(queryString: queryString!)
        // myLocation = UserLocation(lat :  lat, long : long)
         
     }
@@ -135,29 +154,6 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         print ("Error encountered")
     }
     
-    func createURL()->URL? {
-        
-        var parameters = Dictionary<String,String>()
-        let baseURL = "http://api.wunderground.com/api/"
-        parameters["api_key"] = WeatherInfo.WeatherAPIKey.API_Key
-        parameters["type"] = "hourly/q/"
-        parameters["latitude"] =  String (describing: myLocation?.lat)
-        parameters["longitude"] =  String (describing: myLocation?.long)
-        parameters["format"] = ".json"
-        
-        var queryItems = Array<URLQueryItem>()
-        for (key,value) in parameters {
-            queryItems.append(URLQueryItem(name : key , value : value) )
-        }
-        
-        let urlComponents = NSURLComponents(string: baseURL)
-        urlComponents?.queryItems = queryItems
-        return urlComponents?.url
-        
-        
-    }
-
-
     
     // MARK: - Navigation
 
@@ -167,14 +163,10 @@ class WeatherFullViewController: UIViewController , CLLocationManagerDelegate{
         let destination = segue.destination
         
         if let destination = destination as? WeatherDetailTVController {
-            
             destination.myWeather = weatherCollection
-            
+        
         }
-        
-        
-        
-        
+
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
