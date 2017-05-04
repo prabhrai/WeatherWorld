@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherDetailTVController: UITableViewController{
     
+    // creating a collection of MyWeather obj's , to get from parsed data in WFullViewController
     var myWeather : Array<MyWeather>?
     
     
@@ -37,6 +38,7 @@ class WeatherDetailTVController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        // count of collection of MyWeather obj's
         return (myWeather?.count)!
     }
 
@@ -46,14 +48,13 @@ class WeatherDetailTVController: UITableViewController{
 
         let index = indexPath.row
         
+        // setting the fields of each cell and setting the conditions icon's image async'ly
         if let myCell = cell as? WeatherDetailTVCell {
             myCell.time.text = myWeather?[index].time
             myCell.conditions.text = myWeather?[index].condition
             myCell.temp.text = "\((myWeather?[index].temp_e)!) °F"
             myCell.date.text = myWeather?[index].time_worded
-           // myCell.icon.image =
-            
-            
+        
             let icon_url = myWeather?[index].icon_url
             
             let task = URLSession.shared.dataTask(with: icon_url!) { data, response, error in
@@ -63,11 +64,8 @@ class WeatherDetailTVController: UITableViewController{
                 let iconImage = UIImage(data: data)
                   myCell.icon.image = iconImage
                 }
-  
         }
-        
         task.resume()
-            
         }
     
         // Configure the cell...

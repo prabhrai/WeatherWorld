@@ -10,11 +10,8 @@ import UIKit
 
 class WeatherDetailTVCell: UITableViewCell {
 
-  //  @IBOutlet weak var date: UIView!
-    
-    @IBOutlet weak var date: UILabel!
 
-    
+    @IBOutlet weak var date: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var conditions: UILabel!
     @IBOutlet weak var temp: UILabel!

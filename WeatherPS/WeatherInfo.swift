@@ -14,22 +14,6 @@ class WeatherInfo {
         static let API_Key = "affbb21f7da824a5"
     }
     
-
-    
-}
-
-struct UserLocation {
-    var lat : Double
-    var long : Double
-    
-    init (
-        lat : Double ,
-        long : Double
-        ){
-        self.lat = lat
-        self.long = long
-    }
-
 }
 
 
@@ -41,18 +25,6 @@ class MyWeather {
     let temp_m : String
     let icon_url : URL
 
-    
-    
-//    init( ){
-//        self.time = ""
-//        self.time_worded = ""
-//        self.condition = ""
-//        self.temp_e = ""
-//        self.temp_m = ""
-//        self.icon_url = ""
-//    }//
-    
-    
     init(   time : String,
             time_worded : String,
             condition : String,
@@ -68,9 +40,17 @@ class MyWeather {
 
     }
     
-    
-    
-    
-    
 }
-					
+
+struct UserLocation {
+    var lat : Double
+    var long : Double
+    
+    init (
+        lat : Double ,
+        long : Double
+        ){
+        self.lat = lat
+        self.long = long
+    }
+}

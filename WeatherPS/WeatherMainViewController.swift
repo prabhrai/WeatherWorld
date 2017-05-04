@@ -11,9 +11,7 @@ import UIKit
 
 
 class WeatherMainViewController: UIViewController  {
-	
-    @IBOutlet weak var ZIP: UITextField!
-  
+
     
     @IBAction func getWeather(_ sender: UIButton ) {
       //   locationManager.stopUpdatingLocation()
@@ -21,6 +19,7 @@ class WeatherMainViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         // locationManager.startUpdatingLocation()
         // Do any additional setup after loading the view.
     }
@@ -31,23 +30,15 @@ class WeatherMainViewController: UIViewController  {
     }
     
     
+
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        let destination = segue.destination
-        
-        if let destination = destination as? WeatherFullViewController {
-      //      destination.myLocation = myLocation
-      //       destination.latitude = lat
-      //      destination.longitude = long
-           destination.ZIP = ZIP.text
-        }
 
-    }
+    // }
     
 
 }

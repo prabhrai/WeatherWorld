@@ -119,15 +119,15 @@
 		4D588E711E986936007DCE92 /* WeatherPS */ = {
 			isa = PBXGroup;
 			children = (
-				4D588E721E986936007DCE92 /* AppDelegate.swift */,
-				4D588E761E986936007DCE92 /* Main.storyboard */,
-				4D67515B1EB569BF001A7EAB /* WeatherDetailTVController.swift */,
-				4D67515D1EB569D7001A7EAB /* WeatherDetailTVCell.swift */,
-				4D431EC61EAFF24E00D57991 /* WeatherFullViewController.swift */,
-				4D588E791E986936007DCE92 /* Assets.xcassets */,
-				4D431ECA1EB05E8400D57991 /* SwiftyJSON.swift */,
-				4D588E7B1E986936007DCE92 /* LaunchScreen.storyboard */,
 				4D588E7E1E986936007DCE92 /* Info.plist */,
+				4D588E721E986936007DCE92 /* AppDelegate.swift */,
+				4D431ECA1EB05E8400D57991 /* SwiftyJSON.swift */,
+				4D588E761E986936007DCE92 /* Main.storyboard */,
+				4D588E791E986936007DCE92 /* Assets.xcassets */,
+				4D588E7B1E986936007DCE92 /* LaunchScreen.storyboard */,
+				4D67515D1EB569D7001A7EAB /* WeatherDetailTVCell.swift */,
+				4D67515B1EB569BF001A7EAB /* WeatherDetailTVController.swift */,
+				4D431EC61EAFF24E00D57991 /* WeatherFullViewController.swift */,
 				4D4FB2EA1EA5C61F008AD66A /* WeatherMainViewController.swift */,
 				4D431EC81EB05B5D00D57991 /* WeatherInfo.swift */,
 			);
